@@ -3,6 +3,7 @@ import click
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
+from svd import svd
 
 
 def calculate_rmsd(X, Y):
@@ -37,7 +38,7 @@ def kabsch(X, Y):
 
     # Computation of the optimal rotation matrix see:
     # http://en.wikipedia.org/wiki/Kabsch_algorithm
-    V, S, W = np.linalg.svd(C)
+    V, S, W = svd(C)
     d = (np.linalg.det(V) * np.linalg.det(W)) < 0.0
 
     if d:
